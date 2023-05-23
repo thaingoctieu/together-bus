@@ -25,12 +25,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "cb783911-69cc-4674-8e7b-916fffc0d089"
-      }
-    },
-    "owner": "ngoocj"
+    }
   }
 }
