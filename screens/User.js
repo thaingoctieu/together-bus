@@ -8,10 +8,16 @@ import {
   Modal,
   ScrollView,
   ToastAndroid,
+  Image,
 } from "react-native";
+import { Octicons } from "@expo/vector-icons";
 
 function User() {
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      
+    </View>
+  );
 }
 
 export default User;
