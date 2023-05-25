@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { Foundation, FontAwesome5 } from "@expo/vector-icons";
 
 import { Login, Home, Weather, Payment, User } from "./screens/index";
 
@@ -11,11 +12,49 @@ const Tab = createBottomTabNavigator();
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Weather" component={Weather} />
-      <Tab.Screen name="Payment" component={Payment} />
-      <Tab.Screen name="User" component={User} />
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "#ff5f5f",
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Foundation name="home" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Weather"
+        component={Weather}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="cloud-sun" size={26} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Payment"
+        component={Payment}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="money-check-alt" size={22} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="User"
+        component={User}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-alt" size={22} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

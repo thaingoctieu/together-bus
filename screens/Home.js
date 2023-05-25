@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView, Button, Modal, ScrollView, ToastA
 function Home() {
     return (
         <View style={styles.container}>
-            <Text>Login</Text>
+            <Text>Home</Text>
         </View>
     )
 
