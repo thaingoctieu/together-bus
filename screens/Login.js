@@ -12,7 +12,7 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
+import { AntDesign, Octicons } from "@expo/vector-icons";
 
 function Login() {
   const navigation = useNavigation();
@@ -27,6 +27,7 @@ function Login() {
   const handleOnchange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.img}>
@@ -39,30 +40,40 @@ function Login() {
           style={styles.input}
           value={inputs.email}
           placeholder="Nhập email người dùng..."
+          name="email"
+          keyboardType="email-address"
           onChangeText={(text) => handleOnchange(text, "email")}
+        />
+        <AntDesign
+          onPress={() => handleOnchange("", "email")}
+          name="closecircle"
+          size={20}
+          color="#363636"
         />
       </View>
       <View style={styles.iwrapper}>
         <TextInput
-          style={styles.input}
-          secureTextEntry={true}
+          style={[styles.input, { width: "85%" }]}
+          secureTextEntry={hidepw}
           value={inputs.password}
           placeholder="Nhập mật khẩu..."
           name="password"
           onChangeText={(text) => handleOnchange(text, "password")}
         />
         <TextInput />
-        {/* <Icon
+        <AntDesign
           onPress={() => setHidepw(!hidepw)}
-          name={hidepw ? "eye-outline" : "eye-off-outline"}
-          style={{
-            fontSize: 25,
-            marginLeft: 250,
-            height: 70,
-            marginBottom: 50,
-          }}
-        /> */}
+          name={hidepw ? "eyeo" : "eye"}
+          size={25}
+          color="#363636"
+        />
       </View>
+      <TouchableOpacity
+        onPress={() => console.log("Not implemented yet")}
+        style={{ width: 300 }}
+      >
+        <Text style={{ alignSelf: "flex-end" }}>Quên mật khẩu</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
@@ -79,6 +90,14 @@ function Login() {
           ĐĂNG NHẬP
         </Text>
       </TouchableOpacity>
+      <View style={{ flexDirection: "row", marginTop: 30 }}>
+        <Text style={{ fontSize: 16 }}>Không có tài khoản? </Text>
+        <TouchableOpacity onPress={() => console.log("Not implemented yet")}>
+          <Text style={{ fontSize: 16, color: "#FB847C", fontWeight: 700 }}>
+            Đăng ký
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -119,15 +138,17 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 16,
     height: 70,
+    width: "88%",
   },
   iwrapper: {
     width: 300,
     height: 70,
-    // marginBottom: 20,
     borderRadius: 10,
     borderColor: "#d1d1d1",
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: 25,
     backgroundColor: "#FAFAFB",
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
