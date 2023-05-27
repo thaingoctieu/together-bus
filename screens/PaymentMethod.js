@@ -158,7 +158,7 @@ const Item = ({title}) => (
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          navigation.navigate("UserIn");
+          navigation.push("SuccessfulPayment");
         }}
       >
         <Text
