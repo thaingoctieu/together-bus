@@ -20,7 +20,9 @@ import {
 } from "@expo/vector-icons";
 
 export default function BusInfo(props) {
-  const [fav, setFav] = useState(false);
+  const info = props.info;
+  const [fav, setFav] = useState(info.fav);
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.icon}>
@@ -28,23 +30,29 @@ export default function BusInfo(props) {
       </View>
       <View
         style={{
-          width: "70%"
+          width: "70%",
         }}
       >
-        <Text style={styles.busname}>Tuyến xe 08</Text>
+        <Text style={styles.busname}>{info.busname}</Text>
         <Text style={[styles.details, { paddingVertical: 2 }]}>
-          Tuyến xe buýt Quận 08 - Đại học Quốc Gia
+          {info.route}
         </Text>
         <View style={{ flexDirection: "row" }}>
           {/* time */}
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <EvilIcons name="clock" size={16} color="#011A51" />
-            <Text style={styles.details}>04:40 - 20:30</Text>
+            <Text style={styles.details}>{info.time}</Text>
           </View>
           {/* price */}
-          <View style={{ flexDirection: "row", paddingLeft: 15 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              paddingLeft: 15,
+            }}
+          >
             <MaterialIcons name="attach-money" size={16} color="#011A51" />
-            <Text style={styles.details}>7k VND</Text>
+            <Text style={styles.details}>{info.price}</Text>
           </View>
         </View>
       </View>
@@ -64,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingBottom: 10,
+    paddingVertical: 10,
     borderBottomWidth: 2,
     borderBottomColor: "#a7b5cc",
   },

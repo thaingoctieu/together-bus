@@ -13,6 +13,7 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  FlatList,
 } from "react-native";
 import { FunctionBtn, Recent } from "../components/index";
 

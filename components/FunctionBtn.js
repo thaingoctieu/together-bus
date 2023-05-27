@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-} from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -51,7 +46,11 @@ export default function FunctionBtn(props) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.push(props.name)}
+      onPress={() => {
+        props.name === "payment"
+          ? navigation.push("UserIn", { screen: "payment" })
+          : navigation.push(props.name);
+      }}
       style={{ alignItems: "center" }}
     >
       <View
