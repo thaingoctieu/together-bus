@@ -18,13 +18,15 @@ import {
   MaterialIcons,
   AntDesign,
 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function BusInfo(props) {
   const info = props.info;
   const [fav, setFav] = useState(info.fav);
+  const navigation = useNavigation()
 
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity onPress={() => navigation.push("BusDetails")} style={styles.wrapper}>
       <View style={styles.icon}>
         <MaterialCommunityIcons name="bus" size={35} color="black" />
       </View>
@@ -63,7 +65,7 @@ export default function BusInfo(props) {
         size={20}
         color="#011A51"
       />
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -14,7 +14,7 @@ import {
   FlatList,
 } from "react-native";
 
-import { Octicons, MaterialIcons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Search, BusInfo } from "../components";
 
