@@ -35,7 +35,7 @@ export default function Recent(props) {
   return (
     <TouchableOpacity
       onPress={() => console.log("not handled yet")}
-      style={{flexDirection: "row", alignItems: "center", width:"100%", paddingVertical:8,  }}
+      style={{flexDirection: "row", alignItems: "center", width:"100%", paddingVertical:8,}}
     >
       <View
         style={{
@@ -49,7 +49,7 @@ export default function Recent(props) {
       >
         {icon}
       </View>
-      <View style={{ width: "60%" }}>
+      <View style={{ width: "60%", justifyContent: 'center' }}>
         <Text
           style={{
             paddingLeft: 13,

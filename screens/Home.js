@@ -64,8 +64,8 @@ function Home() {
           </View>
           <View style={styles.map}></View>
           <Text style={styles.title}>Tìm kiếm gần đây</Text>
-          {data.map((dt) => (
-            <Recent info={dt} />
+          {data.map((dt, idx) => (
+            <Recent info={dt} key={idx} />
           ))}
         </View>
       </ImageBackground>
@@ -92,21 +92,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     flexWrap: "wrap",
-    padding: 16,
+    padding: 20,
     paddingTop: 40,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
   },
   fwrapper: {
-    paddingVertical: 20,
+    paddingBottom: 20,
+    paddingTop: 8,
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
   },
   title: {
     fontSize: 20,
-    // marginLeft: 12,
-    // marginBottom: 10,
+    paddingBottom: 10,
   },
   map: {
     flex: 1,
