@@ -14,7 +14,7 @@ import {
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-function Payment() {
+function PaymentMethod() {
   const navigation = useNavigation();
 
   const data = {
@@ -118,7 +118,7 @@ const Item = ({title}) => (
     
     <View style={styles.container}>
       <View style={styles.header}>
-        <Octicons name="arrow-left" 
+      <Octicons name="arrow-left" 
           size={35} 
           color="black" 
           onPress={() => {
@@ -158,7 +158,7 @@ const Item = ({title}) => (
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          navigation.push("PaymentMethod");
+          navigation.navigate("UserIn");
         }}
       >
         <Text
@@ -175,7 +175,7 @@ const Item = ({title}) => (
   );
 }
 
-export default Payment;
+export default PaymentMethod;
 
 const styles = StyleSheet.create({
   container: {
