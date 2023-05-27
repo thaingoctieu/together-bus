@@ -42,7 +42,7 @@ export default function FunctionBtn(props) {
   }
 
   return (
-    <TouchableOpacity style={{margin: 12}}>
+    <TouchableOpacity style={{alignItems: "center"}}>
       <View
         style={{
           backgroundColor: color,
@@ -55,7 +55,7 @@ export default function FunctionBtn(props) {
       >
         {icon}
       </View>
-      <Text style={{ alignSelf: "center", marginTop: 10, fontSize: 12 }}>
+      <Text style={{ alignSelf: "center", marginTop: 10, fontSize: 11 }}>
         {fname}
       </Text>
     </TouchableOpacity>
