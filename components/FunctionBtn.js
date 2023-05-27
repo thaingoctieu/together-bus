@@ -1,4 +1,9 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+} from "react";
 import {
   StyleSheet,
   Text,
@@ -10,8 +15,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Octicons, MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function FunctionBtn(props) {
+  const navigation = useNavigation();
+
   let color = "";
   let icon = <Octicons name="search" size={35} color="black" />;
   let fname = "";
@@ -42,7 +50,10 @@ export default function FunctionBtn(props) {
   }
 
   return (
-    <TouchableOpacity style={{alignItems: "center"}}>
+    <TouchableOpacity
+      onPress={() => navigation.push(props.name)}
+      style={{ alignItems: "center" }}
+    >
       <View
         style={{
           backgroundColor: color,
