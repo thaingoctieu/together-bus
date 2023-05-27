@@ -60,7 +60,6 @@ function Login() {
           name="password"
           onChangeText={(text) => handleOnchange(text, "password")}
         />
-        <TextInput />
         <AntDesign
           onPress={() => setHidepw(!hidepw)}
           name={hidepw ? "eyeo" : "eye"}
