@@ -77,7 +77,6 @@ const MyStack = () => {
     >
       {/* if logged in */}
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
-      
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserIn" component={MyTabs} />
       <Stack.Screen name="findbus" component={FindBus} />
