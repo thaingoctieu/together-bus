@@ -97,8 +97,9 @@ export default function FindRoute() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
+    { label: "Tối đa 1 chuyến", value: "max1" },
+    { label: "Tối đa 2 chuyến", value: "max2" },
+    { label: "Tối đa 3 chuyến", value: "max3" },
   ]);
 
   return (
