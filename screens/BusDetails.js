@@ -17,10 +17,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import { Octicons } from "@expo/vector-icons";
+import { getRouteInfo } from "../services/Routes";
 
 function Detail(props) {
   const tab = props.tab;
-  const info = {
+  let info = {
     bus_no: "08",
     name: "Bến xe buýt Quận 8 -  Đại học Quốc gia",
     time: "04:40 - 20:30",
@@ -31,6 +32,7 @@ function Detail(props) {
     duration: "80 - 90 phút",
     num: "280 chuyến/ngày",
   };
+  info = props.info;
   return (
     <View
       style={{
@@ -84,7 +86,7 @@ function Detail(props) {
 
           <View style={{ flexDirection: "row", paddingVertical: 5 }}>
             <Text style={{ fontWeight: 500 }}>Thời gian chạy: </Text>
-            <Text>{info.type}</Text>
+            <Text>{info.duration}</Text>
           </View>
 
           <View style={{ flexDirection: "row", paddingVertical: 5 }}>
@@ -97,7 +99,8 @@ function Detail(props) {
   );
 }
 
-export default function BusDetails() {
+export default function BusDetails({ route }) {
+  const { busNo } = route.params;
   const [tab, setTab] = useState({
     tab1: "tab1",
     tab2: "tab",
@@ -108,6 +111,25 @@ export default function BusDetails() {
     tab2: "tabname",
     tab3: "tabname",
   });
+
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    getRouteInfo(busNo).then((res) => {
+      let item = res.data;
+      setInfo({
+        bus_no: item.busNo,
+        name: item.name,
+        time: item.operatingTime,
+        price: item.price,
+        price_dis: item.priceStudent,
+        price_30: item.priceGroup,
+        type: item.type,
+        duration: item.tripTime + " phút",
+        num: item.numTrips,
+      });
+    });
+  }, []);
 
   const DATA = [
     {
@@ -185,7 +207,7 @@ export default function BusDetails() {
             color="white"
             onPress={() => navigation.pop()}
           />
-          <Text style={styles.title}>Tuyến xe 08</Text>
+          <Text style={styles.title}>Tuyến xe {info.bus_no}</Text>
         </View>
       </ImageBackground>
       <ImageBackground
@@ -265,7 +287,7 @@ export default function BusDetails() {
           </TouchableOpacity>
         </View>
         {tab.tab3 === "tab3" ? (
-          <Detail tab={tab} />
+          <Detail tab={tab} bus_no={busNo} info={info} />
         ) : (
           <FlatList
             data={DATA}

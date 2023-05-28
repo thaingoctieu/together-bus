@@ -26,7 +26,7 @@ export default function BusInfo(props) {
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity onPress={() => navigation.push("BusDetails")} style={styles.wrapper}>
+    <TouchableOpacity onPress={() => navigation.push("BusDetails", { busNo: info.busNo })} style={styles.wrapper}>
       <View style={styles.icon}>
         <MaterialCommunityIcons name="bus" size={35} color="black" />
       </View>

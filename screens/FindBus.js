@@ -66,6 +66,7 @@ export default function FindBus() {
         return {
           id: index,
           busname: "Tuyến xe " + dt.busNo,
+          busNo: dt.busNo,
           route: dt.name,
           time: dt.operatingTime,
           price: dt.price + " VND",
