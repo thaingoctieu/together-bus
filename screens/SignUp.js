@@ -10,15 +10,17 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  ToastAndroid,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Octicons } from "@expo/vector-icons";
+import { account } from "../services";
 
 function SignUp() {
   const navigation = useNavigation();
 
   const [inputs, setInputs] = useState({
-    email: "",
+    phone: "",
     name: "",
     password: "",
   });
@@ -28,6 +30,18 @@ function SignUp() {
   const handleOnchange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
+
+  const getRandomEmail = (domain,length) =>
+  {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+      for( var i=0; i < length; i++ )
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+      return text + domain;
+  }
+  var email = getRandomEmail("@gmail.com", 10);
 
   return (
     <View style={styles.container}>
@@ -41,14 +55,14 @@ function SignUp() {
       <View style={styles.iwrapper}>
         <TextInput
           style={styles.input}
-          value={inputs.email}
-          placeholder="Nhập email người dùng..."
-          name="email"
-          keyboardType="email-address"
-          onChangeText={(text) => handleOnchange(text, "email")}
+          value={inputs.phone}
+          placeholder="Nhập số điện thoại..."
+          name="phone"
+          keyboardType="numeric"
+          onChangeText={(text) => handleOnchange(text, "phone")}
         />
         <AntDesign
-          onPress={() => handleOnchange("", "email")}
+          onPress={() => handleOnchange("", "phone")}
           name="closecircle"
           size={20}
           color="#363636"
@@ -94,7 +108,17 @@ function SignUp() {
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          navigation.navigate("Login");
+          account.createAccount({
+            ...inputs,
+            email,
+          }).then((res) => {
+            console.log(res);
+            ToastAndroid.show("Đăng ký thành công", ToastAndroid.SHORT);
+            navigation.navigate("Login");
+          }).catch((err) => {
+            console.log(err);
+            ToastAndroid.show("Đăng ký thất bại", ToastAndroid.SHORT);
+          });
         }}
       >
         <Text
@@ -109,7 +133,10 @@ function SignUp() {
       </TouchableOpacity>
       <View style={{ flexDirection: "row", marginTop: 30 }}>
         <Text style={{ fontSize: 16 }}>Đã có tài khoản? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => {
+          
+          navigation.navigate("Login");
+        }}>
           <Text style={{ fontSize: 16, color: "#FB847C", fontWeight: 700 }}>
             Đăng nhập
           </Text>
