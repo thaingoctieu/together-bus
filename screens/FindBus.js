@@ -11,15 +11,51 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
-  FlatList
+  FlatList,
 } from "react-native";
 
-import { Octicons, MaterialIcons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Search, BusInfo } from "../components";
 
 export default function FindBus() {
   const navigation = useNavigation();
+  const DATA = [
+    {
+      id: 1,
+      busname: "Tuyến xe 08",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: false,
+    },
+    {
+      id: 2,
+      busname: "Tuyến xe 01",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: true,
+    },
+    {
+      id: 3,
+      busname: "Tuyến xe 03",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: true,
+    },
+    {
+      id: 4,
+      busname: "D4",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: false,
+    },
+  ];
+
+  const [all, setAll] = useState(true);
 
   return (
     <View style={styles.container}>
@@ -55,6 +91,7 @@ export default function FindBus() {
             }}
           >
             <TouchableOpacity
+              onPress={() => setAll(true)}
               style={{
                 width: "50%",
                 borderRightWidth: 2,
@@ -63,15 +100,21 @@ export default function FindBus() {
             >
               <Text style={styles.tab}>TẤT CẢ</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ width: "50%" }}>
+            <TouchableOpacity
+              onPress={() => setAll(false)}
+              style={{ width: "50%" }}
+            >
               <Text style={styles.tab}>YÊU THÍCH</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>
-      <FlatList style={{padding: 20}}>
-        <BusInfo />
-      </FlatList>
+      <FlatList
+        style={{ padding: 20 }}
+        data={all === true ? DATA : DATA.filter((dt) => dt.fav === !all)}
+        renderItem={({ item }) => <BusInfo info={item} />}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }

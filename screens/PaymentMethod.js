@@ -9,10 +9,12 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
-  ScrollViewBase,
+  ScrollView,
+  Image
 } from "react-native";
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { BusTicket} from "../components";
 
 function PaymentMethod() {
   const navigation = useNavigation();
@@ -24,89 +26,47 @@ function PaymentMethod() {
   }
 
   const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+    {
+      id: 1,
+      busname: "Tuyến xe 08",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: false,
+    },
+    {
+      id: 2,
+      busname: "Tuyến xe 01",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: true,
+    },
+    {
+      id: 3,
+      busname: "Tuyến xe 03",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: true,
+    },
+    {
+      id: 4,
+      busname: "D4",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: false,
+    },
+    {
+      id: 5,
+      busname: "D4",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: "7k VND",
+      fav: false,
+    },
+  ];
 
 const Item = ({title}) => (
   <View style={styles.item}>
@@ -118,14 +78,15 @@ const Item = ({title}) => (
     
     <View style={styles.container}>
       <View style={styles.header}>
-      <Octicons name="arrow-left" 
-          size={35} 
-          color="black" 
-          onPress={() => {
-          navigation.pop();
-        }}/>
+        <Octicons name="arrow-left" 
+            size={35} 
+            color="black" 
+            onPress={() => {
+            navigation.pop();
+          }}/>
         <Text style={styles.text}>Thanh toán</Text>
       </View>
+      <ScrollView>
       <View style={styles.orderInfo}>
         <ImageBackground 
         source={require("../assets/card.png")}
@@ -146,32 +107,48 @@ const Item = ({title}) => (
         </View>
         </ImageBackground>
       </View>
-      <View >
-      <View style={{height:'90%', paddingVertical: 20}}>
-        <FlatList
-          data={DATA}
-          renderItem={({item}) => <Item title={item.title} />}
-          keyExtractor={item => item.id}
-        />
+      {DATA.map((dt, idx) => (
+            <BusTicket info={dt} key={idx} />
+      ))}
+      <View>
+            <View style={{paddingTop: 16}}>
+              <Text style={{fontSize:16}}>Phương thức thanh toán</Text>
+            </View>
+            <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 16,}}>
+              <View>
+                <Image source={require("../assets/momo.png")} style={styles.logo}></Image>
+              </View>
+              <View>
+                <Image source={require("../assets/Logo-ZaloPay-Square.webp")} style={styles.logo}></Image>
+              </View>
+              <View>
+                <Image source={require("../assets/VCB.png")} style={styles.logo}></Image>
+              </View>
+              <View>
+                <Image source={require("../assets/OCB.png")} style={styles.logo}></Image>
+              </View>
+            </View>
       </View>
-      </View>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          navigation.push("SuccessfulPayment");
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: 500,
-            fontSize: 13,
-            color: "#fff", // for ios
+      <View>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigation.push("SuccessfulPayment");
           }}
         >
-          THANH TOÁN
-        </Text>
+          <Text
+            style={{
+              fontWeight: 500,
+              fontSize: 13,
+              color: "#fff", // for ios
+            }}
+          >
+            THANH TOÁN
+          </Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -183,7 +160,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 42,
     paddingHorizontal: 18,
-
+    paddingBottom: 18,
+    flexDirection:"column"
   },
   header: {
     flexDirection: "row",
@@ -211,18 +189,18 @@ const styles = StyleSheet.create({
     paddingVertical: 8
   },
   btn: {
-    position:'absolute',
-    bottom:20,
-    right:20,
-    alignSelf:'flex-end',
     borderRadius: 50,
     padding: 18,
     backgroundColor: "#FF5F5F", // for ios
     borderRadius: 10,
-    width: 150,
+    width: "100%",
     alignItems: "center",
     marginTop: 20,
-    shadowColor: '#000',  
-    elevation: 6,  
+    
   },
+  logo: {
+    width: 68,
+    height: 68,
+    borderRadius: 20,
+  }
 });

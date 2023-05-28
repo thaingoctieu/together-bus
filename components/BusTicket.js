@@ -20,9 +20,9 @@ import {
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function BusInfo(props) {
+export default function BusTicket(props) {
   const info = props.info;
-  const [fav, setFav] = useState(info.fav);
+  // const [fav, setFav] = useState(info.fav);
   const navigation = useNavigation()
 
   return (
@@ -32,7 +32,7 @@ export default function BusInfo(props) {
       </View>
       <View
         style={{
-          width: "70%",
+          width: "75%",
         }}
       >
         <Text style={styles.busname}>{info.busname}</Text>
@@ -41,17 +41,17 @@ export default function BusInfo(props) {
         </Text>
         <View style={{ flexDirection: "row" }}>
           {/* time */}
-          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: 'center'}}>
+          {/* <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             <EvilIcons name="clock" size={16} color="#011A51" />
             <Text style={styles.details}>{info.time}</Text>
-          </View>
+          </View> */}
           {/* price */}
           <View
             style={{
               flexDirection: "row",
               justifyContent: "center",
-              paddingLeft: 15,
-              alignItems: 'center'
+              // paddingLeft: 15,
+              alignItems: "center"
             }}
           >
             <MaterialIcons name="attach-money" size={16} color="#011A51" />
@@ -60,12 +60,12 @@ export default function BusInfo(props) {
         </View>
       </View>
 
-      <AntDesign
+      {/* <AntDesign
         onPress={() => setFav(!fav)}
         name={fav ? "heart" : "hearto"}
         size={20}
         color="#011A51"
-      />
+      /> */}
     </TouchableOpacity>
   );
 }

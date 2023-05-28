@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   ScrollViewBase,
+  Image
 } from "react-native";
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -19,33 +20,67 @@ function SuccessfulPayment() {
   const navigation = useNavigation();
 
   const data = {
-    date: "20/10/2021",
-    totalTicket: 3,
+    name: "Hoa Nguyen",
+    ID: "XTH018373032",
     totalCost: 30000,
   }
 
-  
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
 
   return (
-    
     <View style={styles.container}>
       <View style={styles.header}>
         <Octicons name="x" 
           size={35} 
           color="black" 
           onPress={() => {
-          navigation.pop();
+          navigation.navigate('UserIn',{screen:'Home'});
         }}/>
-        <Text style={styles.text}>Thanh toán</Text>
       </View>
-      
+
+      <View style={styles.info}>
+        <Image source={require("../assets/tick-icon.png")} style={{width: 120, height:120, alignSelf: 'center'}}></Image>
+        <Text style={{
+          color: '#fff', 
+          fontSize:19, padding: 18, 
+          borderBottomWidth:1,
+          borderBottomColor: '#fff',
+          alignSelf: 'center',
+          marginBottom: 20,
+        }}>Giao dịch thành công
+        </Text>
+        <View style={{flexDirection:"row", justifyContent: "space-between"}}>
+          <Text style = {styles.titleText}>Họ và tên:</Text>
+          <Text style = {styles.infoText}>{data.name}</Text>
+        </View>
+        <View style={{flexDirection:"row", justifyContent: "space-between"}}>
+          <Text style = {styles.titleText}>ID giao dịch:</Text>
+          <Text style = {styles.infoText}>{data.ID}</Text>
+        </View>
+        <View style={{flexDirection:"row", justifyContent: "space-between"}}>
+          <Text style = {styles.titleText}>Số tiền:</Text>
+          <Text style = {styles.infoText}>{data.totalCost+" VNĐ"}</Text>
+        </View>
       </View>
+
+      <View>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigation.navigate('UserIn',{screen:'Home'});
+        }}>
+          <Text
+            style={{
+              fontWeight: 500,
+              fontSize: 13,
+              color: "#fff", // for ios
+            }}
+          >
+            XONG
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -56,47 +91,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: 42,
-    paddingHorizontal: 18,
+    paddingHorizontal: 32,
+    // paddingVertical: 30
 
   },
-  header: {
-    flexDirection: "row",
+  info: {
+    // marginHorizontal: 30,
+    marginTop: 60,
+    width: '100%',
+    // height: 400,
+    backgroundColor: "#214083",
+    paddingTop: 32,
+    paddingHorizontal: 16,
+    paddingBottom: 52,
+    borderRadius: 20,
   },
-  text: {
-    marginLeft: 10,
-    fontSize: 18,
-  },
-  orderInfo: {
-    paddingTop: 16,
-  },
-  card: {
-    // flex:1,
-    // resizeMode: "cover",
-    width: "100%",
-    height: 240,
-    overflow: 'hidden',
-    borderRadius: 32
+  titleText: {
+    color: "#fff", 
+    fontSize: 13, 
+    fontWeight: 500, 
+    paddingHorizontal:16, 
+    paddingVertical: 24,
+    fontWeight: 300,
+    opacity: 0.5,
   },
   infoText: {
     color: "#fff", 
-    fontSize: 16, 
+    fontSize: 13, 
     fontWeight: 500, 
     paddingHorizontal:16, 
-    paddingVertical: 8
+    paddingVertical: 24,
+    fontWeight: 400,
   },
   btn: {
-    position:'absolute',
-    bottom:20,
-    right:20,
-    alignSelf:'flex-end',
+    marginTop: 56,
     borderRadius: 50,
     padding: 18,
     backgroundColor: "#FF5F5F", // for ios
     borderRadius: 10,
-    width: 150,
+    width: "100%",
     alignItems: "center",
-    marginTop: 20,
-    shadowColor: '#000',  
-    elevation: 6,  
+    
   },
+  
 });
