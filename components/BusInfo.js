@@ -41,7 +41,7 @@ export default function BusInfo(props) {
         </Text>
         <View style={{ flexDirection: "row" }}>
           {/* time */}
-          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: 'center'}}>
+          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: 'center', justifyContent: 'center'}}>
             <EvilIcons name="clock" size={16} color="#011A51" />
             <Text style={styles.details}>{info.time}</Text>
           </View>
@@ -55,7 +55,7 @@ export default function BusInfo(props) {
             }}
           >
             <MaterialIcons name="attach-money" size={16} color="#011A51" />
-            <Text style={styles.details}>{info.price}</Text>
+            <Text style={styles.details}>{info.price+'k VNĐ'}</Text>
           </View>
         </View>
       </View>

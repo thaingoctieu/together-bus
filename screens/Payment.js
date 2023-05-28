@@ -15,15 +15,16 @@ import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign} from "@expo/vector-icons";
 import { BusInfo, BusTicket } from "../components";
-
+// import moment from "moment-timezone";
+import moment from 'moment';
 function Payment() {
   const navigation = useNavigation();
   
-  const dataCard = {
-    date: "20/10/2021",
-    totalTicket: 3,
-    totalCost: 30000,
-  }
+  // const dataCard = {
+  //   date: "20/10/2021",
+  //   totalTicket: 3,
+  //   totalCost: 30000,
+  // }
 
   const DATA = [
     {
@@ -31,44 +32,42 @@ function Payment() {
       busname: "Tuyến xe 08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
     },
     {
       id: 2,
       busname: "Tuyến xe 01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
     },
     {
       id: 3,
       busname: "Tuyến xe 03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 6,
     },
     {
       id: 4,
       busname: "D4",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
-    },
-    {
-      id: 5,
-      busname: "D4",
-      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
-      time: "04:40 - 20:30",
-      price: "7k VND",
-      // fav: false,
+      price: 7,
     },
   ];
   
   const [data, setData] = useState(DATA);
+  const [dataCard, setDataCard] = useState({
+    date: moment().format('L'),
+    totalTicket: data.length,
+    totalCost: data.reduce((total, item) => total + parseInt(item.price), 0)
+  });
   const handleDeleteTicket = (id) => {
     setData((prevData) => {
       return prevData.filter((item) => item.id != id);
     });
+    setDataCard((prevData) => ({ ...prevData, ['totalTicket']: prevData.totalTicket - 1, ['totalCost']: prevData.totalCost - data[id].price}));
   }
 
 const Item = ({title}) => (
@@ -106,7 +105,7 @@ const Item = ({title}) => (
         </View>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.infoText}>Tổng tiền:</Text>
-          <Text style = {styles.infoText}>{dataCard.totalCost+" VNĐ"}</Text>
+          <Text style = {styles.infoText}>{dataCard.totalCost+",000 VNĐ"}</Text>
         </View>
         </ImageBackground>
       </View>
@@ -119,8 +118,8 @@ const Item = ({title}) => (
         /> */}
         <ScrollView style={{paddingBottom: 60}}>
           {data.map((dt, idx) => (
-              <View style={{flexDirection:'row', alignItems: "center", justifyContent: "center"}}>
-                <BusTicket info={dt} key={idx} />
+              <View style={{flexDirection:'row', alignItems: "center", justifyContent: "center"}} key={idx} >
+                <BusTicket info={dt}/>
                 <AntDesign
                   onPress={() => handleDeleteTicket(dt.id)}
                   name="closecircle"

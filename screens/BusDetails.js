@@ -175,7 +175,7 @@ export default function BusDetails() {
             flexDirection: "row",
             paddingTop: 50,
             alignItems: "center",
-            paddingBottom: 25,
+            // paddingBottom: 25,
           }}
         >
           <Octicons
@@ -197,13 +197,13 @@ export default function BusDetails() {
             backgroundColor: "#214083",
             borderRadius: 10,
             padding: 10,
-            width: 70,
+            width: 80,
             position: 'absolute',
             right: 20,
             bottom: 20,
           }}
         >
-          <Text style={{ color: "#fff", fontSize: 13, fontWeight: 500 }}>
+          <Text style={{ color: "#fff", fontSize: 12, fontWeight: 500 }}>
             ĐẶT VÉ
           </Text>
         </TouchableOpacity>
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   title: {
     paddingLeft: 20,
     color: "white",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 500,
   },
   map: {
@@ -303,6 +303,7 @@ const styles = StyleSheet.create({
     color: "#474545",
     fontWeight: 500,
     fontSize: 14,
+    width: "80%",
   },
   tab: {
     marginVertical: 12,

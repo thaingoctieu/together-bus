@@ -55,7 +55,7 @@ export default function BusTicket(props) {
             }}
           >
             <MaterialIcons name="attach-money" size={16} color="#011A51" />
-            <Text style={styles.details}>{info.price}</Text>
+            <Text style={styles.details}>{info.price+ 'k VNĐ'}</Text>
           </View>
         </View>
       </View>
@@ -96,4 +96,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#011A51",
   },
+
 });

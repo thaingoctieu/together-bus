@@ -47,7 +47,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: false,
     },
     {
@@ -55,7 +55,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: true,
     },
     {
@@ -63,7 +63,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: true,
     },
     {
@@ -71,7 +71,7 @@ export default function FindBusStop() {
       busname: "D4",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: false,
     },
   ];

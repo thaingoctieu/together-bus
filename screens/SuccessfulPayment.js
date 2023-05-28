@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { BusInfo } from "../components";
 
 function SuccessfulPayment() {
   const navigation = useNavigation();
@@ -22,7 +21,7 @@ function SuccessfulPayment() {
   const data = {
     name: "Hoa Nguyen",
     ID: "XTH018373032",
-    totalCost: 30000,
+    totalCost: 27,
   }
 
 
@@ -59,7 +58,7 @@ function SuccessfulPayment() {
         </View>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.titleText}>Số tiền:</Text>
-          <Text style = {styles.infoText}>{data.totalCost+" VNĐ"}</Text>
+          <Text style = {styles.infoText}>{data.totalCost+",000 VNĐ"}</Text>
         </View>
       </View>
 

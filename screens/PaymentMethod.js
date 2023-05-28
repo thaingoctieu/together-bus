@@ -15,15 +15,10 @@ import {
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { BusTicket} from "../components";
+import moment from "moment";
 
 function PaymentMethod() {
   const navigation = useNavigation();
-
-  const data = {
-    date: "20/10/2021",
-    totalTicket: 3,
-    totalCost: 30000,
-  }
 
   const DATA = [
     {
@@ -31,48 +26,37 @@ function PaymentMethod() {
       busname: "Tuyến xe 08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
-      fav: false,
+      price: 7,
     },
     {
       id: 2,
       busname: "Tuyến xe 01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
-      fav: true,
+      price: 7,
     },
     {
       id: 3,
       busname: "Tuyến xe 03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
-      fav: true,
+      price: 6,
     },
     {
       id: 4,
       busname: "D4",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
-      fav: false,
-    },
-    {
-      id: 5,
-      busname: "D4",
-      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
-      time: "04:40 - 20:30",
-      price: "7k VND",
-      fav: false,
+      price: 7,
     },
   ];
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+  const data = {
+    date: moment().format('L'),
+    totalTicket: DATA.length,
+    totalCost: DATA.reduce((total, item) => total + parseInt(item.price), 0)
+  }
+const [method, setMethod] = useState();
 
   return (
     
@@ -103,7 +87,7 @@ const Item = ({title}) => (
         </View>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.infoText}>Tổng tiền:</Text>
-          <Text style = {styles.infoText}>{data.totalCost+" VNĐ"}</Text>
+          <Text style = {styles.infoText}>{data.totalCost+",000 VNĐ"}</Text>
         </View>
         </ImageBackground>
       </View>
@@ -115,18 +99,30 @@ const Item = ({title}) => (
               <Text style={{fontSize:16}}>Phương thức thanh toán</Text>
             </View>
             <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 16,}}>
-              <View>
+              <TouchableOpacity 
+              style = {method=='momo'?styles.item:{}}
+              onPress={setMethod('momo')}
+              >
                 <Image source={require("../assets/momo.png")} style={styles.logo}></Image>
-              </View>
-              <View>
+              </TouchableOpacity>
+              <TouchableOpacity
+              style = {method=='zalopay'?styles.item:{}}
+              onPress={setMethod('zalopay')}
+              >
                 <Image source={require("../assets/Logo-ZaloPay-Square.webp")} style={styles.logo}></Image>
-              </View>
-              <View>
+              </TouchableOpacity>
+              <TouchableOpacity
+              style = {method=='VCB'?styles.item:{}}
+              onPress={setMethod('VCB')}
+              >
                 <Image source={require("../assets/VCB.png")} style={styles.logo}></Image>
-              </View>
-              <View>
+              </TouchableOpacity>
+              <TouchableOpacity
+              style = {method=='OCB'?styles.item:{}}
+              onPress={setMethod('OCB')}
+              >
                 <Image source={require("../assets/OCB.png")} style={styles.logo}></Image>
-              </View>
+              </TouchableOpacity>
             </View>
       </View>
       <View>
@@ -201,6 +197,11 @@ const styles = StyleSheet.create({
   logo: {
     width: 68,
     height: 68,
-    borderRadius: 20,
+    borderRadius: 10,
+  },
+  item : {
+    padding: 4,
+    borderBottomWidth: 2,
+    borderBottomColor: "#39B54A",
   }
 });
