@@ -15,6 +15,9 @@ import {
   BusDetails,
   FindBusStop,
   OnBoarding,
+  SuccessfulPayment,
+  PaymentMethod,
+  SignUp
 } from "./screens/index";
 
 const Stack = createStackNavigator();
@@ -77,8 +80,8 @@ const MyStack = () => {
     >
       {/* if logged in */}
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
-      
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="UserIn" component={MyTabs} />
       <Stack.Screen name="findbus" component={FindBus} />
       <Stack.Screen name="BusDetails" component={BusDetails} />
