@@ -15,7 +15,6 @@ import {
   BusDetails,
   FindBusStop,
 <<<<<<< HEAD
-  SuccessfulPayment,
   PaymentMethod
 =======
   OnBoarding,
