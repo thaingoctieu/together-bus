@@ -63,7 +63,7 @@ export default function Recent(props) {
         </Text>
         <Text style={{ paddingLeft: 13, color: "#9CAEB8", fontSize: 13 }}>{info.details}</Text>
       </View>
-      <Text style={{ fontWeight: 500, fontSize:12, width: "100%", flex:1 }}>02/02/2023</Text>
+      <Text style={{ fontWeight: 500, fontSize:11, width: "100%", flex:1 }}>02/02/2023</Text>
     </TouchableOpacity>
   );
 }

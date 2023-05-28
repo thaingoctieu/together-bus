@@ -26,7 +26,7 @@ export default function FindBus() {
       busname: "Tuyến xe 08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: false,
     },
     {
@@ -34,7 +34,7 @@ export default function FindBus() {
       busname: "Tuyến xe 01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: true,
     },
     {
@@ -42,7 +42,7 @@ export default function FindBus() {
       busname: "Tuyến xe 03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: true,
     },
     {
@@ -50,7 +50,7 @@ export default function FindBus() {
       busname: "D4",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: "7k VND",
+      price: 7,
       fav: false,
     },
   ];
@@ -79,7 +79,7 @@ export default function FindBus() {
               color="white"
               onPress={() => navigation.pop()}
             />
-            <Text style={styles.title}>Chọn tuyết xe</Text>
+            <Text style={styles.title}>Chọn tuyến xe</Text>
           </View>
           <Search />
           <View
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   title: {
     paddingLeft: 20,
     color: "white",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 500,
   },
   img: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   tab: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 600,
     color: "#fff",
     alignSelf: "center",

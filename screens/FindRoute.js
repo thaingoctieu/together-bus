@@ -15,12 +15,19 @@ import {
   TextInput,
 } from "react-native";
 import MapView from "react-native-maps";
-import { Octicons, MaterialIcons } from "@expo/vector-icons";
+import { Octicons, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { BusInfo } from "../components";
+import DropDownPicker from "react-native-dropdown-picker";
 
-function Search() {
-  const [input, setInput] = useState("");
+function PickRoute() {
+  const [inputs, setInputs] = useState({
+    from: "",
+    to: "",
+  });
+
+  const handleOnchange = (text, input) => {
+    setInputs((prevState) => ({ ...prevState, [input]: text }));
+  };
 
   return (
     <View>
@@ -30,16 +37,27 @@ function Search() {
         <TextInput
           style={{ height: "100%", fontSize: 14, paddingLeft: 20 }}
           placeholder="[Vị trí hiện tại]"
-          name="findbus"
-          onChangeText={(text) => setInput(text)}
-          value={input}
+          name="from"
+          onChangeText={(text) => handleOnchange(text, "from")}
+          value={inputs.from}
+        />
+      </View>
+      <View style={styles.iwrapper}>
+        <Text style={{ paddingRight: 14, fontWeight: 500 }}>Đến</Text>
+        <SimpleLineIcons name="location-pin" size={24} color="black" />
+        <TextInput
+          style={{ height: "100%", fontSize: 14, paddingLeft: 20 }}
+          placeholder="Địa điểm đến"
+          name="to"
+          onChangeText={(text) => handleOnchange(text, "to")}
+          value={inputs.to}
         />
       </View>
     </View>
   );
 }
 
-export default function FindBusStop() {
+export default function FindRoute() {
   const navigation = useNavigation();
   const DATA = [
     {
@@ -47,7 +65,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: 7,
+      price: "7k VND",
       fav: false,
     },
     {
@@ -55,7 +73,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: 7,
+      price: "7k VND",
       fav: true,
     },
     {
@@ -63,7 +81,7 @@ export default function FindBusStop() {
       busname: "Tuyến xe 03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: 7,
+      price: "7k VND",
       fav: true,
     },
     {
@@ -71,24 +89,18 @@ export default function FindBusStop() {
       busname: "D4",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
-      price: 7,
+      price: "7k VND",
       fav: false,
     },
   ];
 
-  const [all, setAll] = useState(true);
-  const [region, setRegion] = useState({
-    region: {
-      latitude: 10.762622,
-      longitude: 106.660172,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    },
-  });
-
-  const onRegionChange = (region) => {
-    setRegion({ region });
-  };
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Tối đa 1 chuyến", value: "max1" },
+    { label: "Tối đa 2 chuyến", value: "max2" },
+    { label: "Tối đa 3 chuyến", value: "max3" },
+  ]);
 
   return (
     <View style={styles.container}>
@@ -112,12 +124,49 @@ export default function FindBusStop() {
               color="white"
               onPress={() => navigation.pop()}
             />
-            <Text style={styles.title}>Chọn tuyết xe</Text>
+            <Text style={styles.title}>Chọn tuyến đường</Text>
           </View>
-          <Search />
+          <PickRoute />
         </ImageBackground>
       </View>
-      <ImageBackground style={{flex: 1}} source={require('../assets/pinnedmap.png')}></ImageBackground>
+      <ImageBackground
+        style={{ flex: 1 }}
+        source={require("../assets/pinnedmap.png")}
+      >
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around",
+            marginTop: -72,
+          }}
+        >
+          <DropDownPicker
+            style={{ borderRadius: 40, borderWidth: 0, height: 48 }}
+            containerStyle={{ width: "60%", borderColor: "#fff" }}
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#3787FF",
+              borderRadius: 10,
+              paddingVertical: 19,
+              paddingHorizontal: 8,
+              width: 80,
+            }}
+          >
+            <Text style={{ color: "#fff", fontSize: 10, fontWeight: 500 }}>
+              TÌM ĐƯỜNG
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -136,16 +185,10 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    height: 190,
+    height: 320,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
     overflow: "hidden",
-  },
-  tab: {
-    fontSize: 20,
-    fontWeight: 600,
-    color: "#fff",
-    alignSelf: "center",
   },
   iwrapper: {
     width: "90%",
@@ -156,5 +199,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 15,
     alignSelf: "center",
+    marginBottom: 20,
   },
 });

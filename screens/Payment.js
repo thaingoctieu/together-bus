@@ -9,104 +9,66 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
-  ScrollViewBase,
+  ScrollView,
 } from "react-native";
 import { Octicons} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
+import { AntDesign} from "@expo/vector-icons";
+import { BusInfo, BusTicket } from "../components";
+// import moment from "moment-timezone";
+import moment from 'moment';
 function Payment() {
   const navigation = useNavigation();
-
-  const data = {
-    date: "20/10/2021",
-    totalTicket: 3,
-    totalCost: 30000,
-  }
+  
+  // const dataCard = {
+  //   date: "20/10/2021",
+  //   totalTicket: 3,
+  //   totalCost: 30000,
+  // }
 
   const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
+    {
+      id: 1,
+      busname: "Tuyến xe 08",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: 7,
+    },
+    {
+      id: 2,
+      busname: "Tuyến xe 01",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: 7,
+    },
+    {
+      id: 3,
+      busname: "Tuyến xe 03",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: 6,
+    },
+    {
+      id: 4,
+      busname: "D4",
+      route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
+      time: "04:40 - 20:30",
+      price: 7,
+    },
+  ];
+  
+  const [data, setData] = useState(DATA);
+  const [dataCard, setDataCard] = useState({
+    date: moment().format('L'),
+    totalTicket: data.length,
+    totalCost: data.reduce((total, item) => total + parseInt(item.price), 0)
+  });
+  const handleDeleteTicket = (id) => {
+    setData((prevData) => {
+      return prevData.filter((item) => item.id != id);
+    });
+    setDataCard((prevData) => ({ ...prevData, ['totalTicket']: prevData.totalTicket - 1, ['totalCost']: prevData.totalCost - data[id].price}));
+  }
 
 const Item = ({title}) => (
   <View style={styles.item}>
@@ -115,6 +77,7 @@ const Item = ({title}) => (
 );
 
   return (
+    
     
     <View style={styles.container}>
       <View style={styles.header}>
@@ -134,27 +97,40 @@ const Item = ({title}) => (
         <Text style={{color: "#fff", fontSize: 20, fontWeight: 500, marginTop: 20 , marginLeft: 16, marginBottom: 8}}>Thông tin đơn hàng</Text>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.infoText}>Ngày mua:</Text>
-          <Text style = {styles.infoText}>{data.date}</Text>
+          <Text style = {styles.infoText}>{dataCard.date}</Text>
         </View>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.infoText}>Tổng số vé:</Text>
-          <Text style = {styles.infoText}>{data.totalTicket}</Text>
+          <Text style = {styles.infoText}>{dataCard.totalTicket}</Text>
         </View>
         <View style={{flexDirection:"row", justifyContent: "space-between"}}>
           <Text style = {styles.infoText}>Tổng tiền:</Text>
-          <Text style = {styles.infoText}>{data.totalCost+" VNĐ"}</Text>
+          <Text style = {styles.infoText}>{dataCard.totalCost+",000 VNĐ"}</Text>
         </View>
         </ImageBackground>
       </View>
-      <View >
-      <View style={{height:'90%', paddingVertical: 20}}>
-        <FlatList
+      {/* <View > */}
+      {/* <View style={{height:'90%', paddingVertical: 20}}> */}
+        {/* <FlatList
           data={DATA}
-          renderItem={({item}) => <Item title={item.title} />}
-          keyExtractor={item => item.id}
-        />
-      </View>
-      </View>
+          renderItem={({ item }) => <BusTicket info={item} />}
+          keyExtractor={(item) => item.id}
+        /> */}
+        <ScrollView style={{paddingBottom: 60}}>
+          {data.map((dt, idx) => (
+              <View style={{flexDirection:'row', alignItems: "center", justifyContent: "center"}} key={idx} >
+                <BusTicket info={dt}/>
+                <AntDesign
+                  onPress={() => handleDeleteTicket(dt.id)}
+                  name="closecircle"
+                  size={20}
+                  color="#FF5F5F"
+                />
+              </View>
+          ))}
+        </ScrollView>
+      {/* </View> */}
+      {/* </View> */}
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
