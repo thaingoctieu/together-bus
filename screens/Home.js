@@ -16,6 +16,8 @@ import {
   FlatList,
 } from "react-native";
 import { FunctionBtn, Recent } from "../components/index";
+import { getAccountInfo } from "../services/Account";
+import { MyContext } from "../services/WithAxios";
 
 function Home() {
   const data = [
@@ -39,9 +41,15 @@ function Home() {
     },
   ];
 
+  const { phone, setPhone } = useContext(MyContext);
+  const [ name, setName ] = useState("");
+
   useEffect(() => {
     // fetch data
-  }, []);
+    getAccountInfo(phone).then((res) => {
+      setName(res.data.name);
+    });
+  }, [phone]);
 
   return (
     <ScrollView>
@@ -55,7 +63,7 @@ function Home() {
           <View style={styles.user}>
             <Text style={{ fontSize: 16, color: "#fff" }}>Xin chào, </Text>
             <Text style={{ fontSize: 20, color: "#fff", fontWeight: 500 }}>
-              User Name
+              {name}
             </Text>
           </View>
         </View>
