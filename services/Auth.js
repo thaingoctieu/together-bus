@@ -13,10 +13,11 @@ export async function logout() {
     return await axios.post(new URL('/auth/logout', API_URL).href);
 }
 
-export async function refreshToken(refreshToken) {
-    return await axios.post(new URL('/auth/refresh', API_URL).href, {
-        refreshToken,
+export async function refreshToken(token) {
+    const resp= await axios.post(new URL('/auth/refresh', API_URL).href, {
+        refreshToken: token,
     }, { skipAuthRefresh: true });
+    return resp;
 }
 
 // Obtain the fresh token each time the function is called

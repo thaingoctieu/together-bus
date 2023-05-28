@@ -17,6 +17,7 @@ import {
 import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Search, BusInfo } from "../components";
+import { getAllRoutes } from "../services/Routes";
 
 export default function FindBus() {
   const navigation = useNavigation();
@@ -54,8 +55,28 @@ export default function FindBus() {
       fav: false,
     },
   ];
+  const [data, setData] = useState(DATA);
 
   const [all, setAll] = useState(true);
+
+  useEffect(() => {
+    // fetch data
+    getAllRoutes().then((res) => {
+      let newData = res.data.routes.map((dt, index) => {
+        return {
+          id: index,
+          busname: "Tuyến xe " + dt.busNo,
+          route: dt.name,
+          time: dt.operatingTime,
+          price: dt.price + " VND",
+          fav: false,
+        };
+      });
+      setData(newData);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -111,7 +132,7 @@ export default function FindBus() {
       </View>
       <FlatList
         style={{ padding: 20 }}
-        data={all === true ? DATA : DATA.filter((dt) => dt.fav === !all)}
+        data={all === true ? data : data.filter((dt) => dt.fav === !all)}
         renderItem={({ item }) => <BusInfo info={item} />}
         keyExtractor={(item) => item.id}
       />
