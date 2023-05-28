@@ -13,6 +13,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Ionicons, MaterialIcons, Foundation , FontAwesome   } from '@expo/vector-icons';
+import { getAccountInfo } from "../services/Account";
+import { MyContext } from "../services/WithAxios";
 function User() {
   data = {
     name: "Hoa Nguyen",
@@ -20,11 +22,23 @@ function User() {
     email: "hoa123@gmail.com",
     phone: "0901073199"
   }
+
+  const { phone } = useContext(MyContext);
   
   const [user, setUser] = useState(data);
   const handleOnchange = (text, input) => {
     setUser((prevState) => ({ ...prevState, [input]: text }));
   };
+  useEffect(() => {
+    getAccountInfo(phone).then((res) => {
+      setUser({
+        name: res.data.name,
+        DoB: "18/02/2002",
+        email: res.data.email,
+        phone: res.data.phone,
+      });
+    });
+  }, []);
   
   return (
     <View style={styles.container}>
