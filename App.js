@@ -14,11 +14,7 @@ import {
   FindBus,
   BusDetails,
   FindBusStop,
-<<<<<<< HEAD
-  PaymentMethod
-=======
   OnBoarding,
->>>>>>> on boarding screen
 } from "./screens/index";
 
 const Stack = createStackNavigator();
