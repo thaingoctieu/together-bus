@@ -17,7 +17,8 @@ import {
   OnBoarding,
   SuccessfulPayment,
   PaymentMethod,
-  SignUp
+  SignUp,
+  FindRoute,
 } from "./screens/index";
 
 const Stack = createStackNavigator();
@@ -88,6 +89,7 @@ const MyStack = () => {
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
       <Stack.Screen name="SuccessfulPayment" component={SuccessfulPayment} />
       <Stack.Screen name="busstop" component={FindBusStop} />
+      <Stack.Screen name="findroute" component={FindRoute} />
     </Stack.Navigator>
   );
 };

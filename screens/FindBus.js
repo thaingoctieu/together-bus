@@ -79,7 +79,7 @@ export default function FindBus() {
               color="white"
               onPress={() => navigation.pop()}
             />
-            <Text style={styles.title}>Chọn tuyết xe</Text>
+            <Text style={styles.title}>Chọn tuyến xe</Text>
           </View>
           <Search />
           <View
