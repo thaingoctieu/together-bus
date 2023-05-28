@@ -9,3 +9,4 @@ export {default as SuccessfulPayment} from "./SuccessfulPayment";
 export { default as FindBus } from "./FindBus";
 export { default as BusDetails } from "./BusDetails";
 export { default as FindBusStop } from "./FindBusStop";
+export { default as OnBoarding } from "./Onboarding";
