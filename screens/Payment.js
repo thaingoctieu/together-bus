@@ -30,6 +30,7 @@ function Payment() {
     {
       id: 1,
       busname: "Tuyến xe 08",
+      busNo: "08",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
       price: 7,
@@ -37,6 +38,7 @@ function Payment() {
     {
       id: 2,
       busname: "Tuyến xe 01",
+      busNo: "01",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
       price: 7,
@@ -44,6 +46,7 @@ function Payment() {
     {
       id: 3,
       busname: "Tuyến xe 03",
+      busNo: "03",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
       price: 6,
@@ -51,6 +54,7 @@ function Payment() {
     {
       id: 4,
       busname: "D4",
+      busNo: "05",
       route: "Bến xe buýt Quận 8 - Đại học Quốc gia",
       time: "04:40 - 20:30",
       price: 7,
