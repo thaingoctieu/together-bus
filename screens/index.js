@@ -9,8 +9,5 @@ export {default as SuccessfulPayment} from "./SuccessfulPayment";
 export { default as BusDetails } from "./BusDetails";
 export { default as FindBusStop } from "./FindBusStop";
 export { default as OnBoarding } from "./Onboarding";
-<<<<<<< HEAD
-=======
 export { default as SignUp } from "./SignUp";
 export { default as FindRoute } from "./FindRoute";
->>>>>>> refs/remotes/origin/master
