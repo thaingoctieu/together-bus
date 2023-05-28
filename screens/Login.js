@@ -10,12 +10,19 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Alert,
+  ToastAndroid,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Octicons } from "@expo/vector-icons";
+import { auth } from "../services";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setTokens } from "../services/Auth";
+import { MyContext } from "../services/WithAxios";
 
 function Login() {
   const navigation = useNavigation();
+  const { phone, setPhone } = useContext(MyContext);
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -76,7 +83,15 @@ function Login() {
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          navigation.navigate("UserIn");
+          auth.login(inputs.email, inputs.password).then(async (res) => {
+            setTokens(res.data.accessToken, res.data.refreshToken, res.data.phone);
+            setPhone(res.data.phone);
+            // navigation.navigate("UserIn");
+          }).catch((err) => {
+            console.log("error login", err);
+            ToastAndroid.show("Đăng nhập thất bại", ToastAndroid.SHORT);
+            return Promise.resolve();
+          });
         }}
       >
         <Text
