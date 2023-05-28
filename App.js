@@ -13,6 +13,7 @@ import {
   User,
   FindBus,
   BusDetails,
+  FindBusStop,
 } from "./screens/index";
 
 const Stack = createStackNavigator();
@@ -78,6 +79,7 @@ const MyStack = () => {
       <Stack.Screen name="UserIn" component={MyTabs} />
       <Stack.Screen name="findbus" component={FindBus} />
       <Stack.Screen name="BusDetails" component={BusDetails} />
+      <Stack.Screen name="busstop" component={FindBusStop} />
     </Stack.Navigator>
   );
 };
