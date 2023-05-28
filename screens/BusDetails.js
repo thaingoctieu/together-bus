@@ -17,7 +17,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import { Octicons } from "@expo/vector-icons";
-import { getRouteInfo } from "../services/Routes";
+import { getRouteInfo, getRouteStops, getRouteTimes } from "../services/Routes";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 function Detail(props) {
   const tab = props.tab;
@@ -113,6 +114,8 @@ export default function BusDetails({ route }) {
   });
 
   const [info, setInfo] = useState({});
+  const [stops, setStops] = useState([]);
+  const [times, setTimes] = useState([]);
 
   useEffect(() => {
     getRouteInfo(busNo).then((res) => {
@@ -128,6 +131,15 @@ export default function BusDetails({ route }) {
         duration: item.tripTime + " phút",
         num: item.numTrips,
       });
+    });
+    getRouteStops(busNo).then((res) => {
+      let item = res.data;
+      setStops(item);
+      
+    });
+    getRouteTimes(busNo).then((res) => {
+      let item = res.data;
+      setTimes(item);
     });
   }, []);
 
