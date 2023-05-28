@@ -8,3 +8,11 @@ export async function getAllRoutes() {
 export async function getRouteInfo(busNo) {
     return await axios.get(new URL(`routes/${busNo}`, API_URL).href);
 }
+
+export async function getRouteStops(busNo) {
+    return await axios.get(new URL(`routes/${busNo}/stops`, API_URL).href);
+}
+
+export async function getRouteTimes(busNo) {
+    return await axios.get(new URL(`routes/${busNo}/timetables`, API_URL).href);
+}
