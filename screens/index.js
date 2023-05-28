@@ -7,3 +7,4 @@ export { default as PaymentMethod } from "./PaymentMethod";
 export { default as FindBus } from "./FindBus";
 export { default as BusDetails } from "./BusDetails";
 export { default as FindBusStop } from "./FindBusStop";
+export { default as OnBoarding } from "./Onboarding";

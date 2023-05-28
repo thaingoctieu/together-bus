@@ -14,6 +14,7 @@ import {
   FindBus,
   BusDetails,
   FindBusStop,
+  OnBoarding,
 } from "./screens/index";
 
 const Stack = createStackNavigator();
@@ -71,10 +72,12 @@ const MyTabs = () => {
 const MyStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="OnBoarding"
       screenOptions={{ headerShown: false }}
     >
       {/* if logged in */}
+      <Stack.Screen name="OnBoarding" component={OnBoarding} />
+      
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="UserIn" component={MyTabs} />
       <Stack.Screen name="findbus" component={FindBus} />
