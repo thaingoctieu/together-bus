@@ -39,6 +39,10 @@ function Home() {
     },
   ];
 
+  useEffect(() => {
+    // fetch data
+  }, []);
+
   return (
     <ScrollView>
       <ImageBackground

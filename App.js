@@ -17,6 +17,8 @@ import {
   SuccessfulPayment,
   PaymentMethod
 } from "./screens/index";
+import WithAxios, { MyContext } from "./services/WithAxios";
+import { useState } from "react";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,20 +73,31 @@ const MyTabs = () => {
 };
 
 const MyStack = () => {
+  const [phone, setPhone] = useState("");
   return (
-    <Stack.Navigator
-      initialRouteName="Login"
-      screenOptions={{ headerShown: false }}
-    >
-      {/* if logged in */}
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="UserIn" component={MyTabs} />
-      <Stack.Screen name="findbus" component={FindBus} />
-      <Stack.Screen name="BusDetails" component={BusDetails} />
-      <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
-      <Stack.Screen name="SuccessfulPayment" component={SuccessfulPayment} />
-      <Stack.Screen name="busstop" component={FindBusStop} />
-    </Stack.Navigator>
+    <MyContext.Provider value={{ phone, setPhone }}>
+        <WithAxios>  
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{ headerShown: false }}
+          >
+            {
+              phone == "" ? (
+                <Stack.Screen name="Login" component={Login} />
+              ) : (
+                <Stack.Group>
+                  <Stack.Screen name="UserIn" component={MyTabs} />
+                  <Stack.Screen name="findbus" component={FindBus} />
+                  <Stack.Screen name="BusDetails" component={BusDetails} />
+                  <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
+                  <Stack.Screen name="SuccessfulPayment" component={SuccessfulPayment} />
+                  <Stack.Screen name="busstop" component={FindBusStop} />
+                </Stack.Group>
+              )
+            }
+          </Stack.Navigator>
+        </WithAxios>
+    </MyContext.Provider>
   );
 };
 
