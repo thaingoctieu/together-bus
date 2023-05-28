@@ -6,4 +6,6 @@ export { default as User } from "./User";
 export { default as PaymentMethod } from "./PaymentMethod";
 export { default as FindBus } from "./FindBus"
 export {default as SuccessfulPayment} from "./SuccessfulPayment";
+export { default as FindBus } from "./FindBus";
 export { default as BusDetails } from "./BusDetails";
+export { default as FindBusStop } from "./FindBusStop";

@@ -63,7 +63,10 @@ function Home() {
             <FunctionBtn name="busstop" />
             <FunctionBtn name="payment" />
           </View>
-          <View style={styles.map}></View>
+          <ImageBackground
+            source={require("../assets/pinnedmap.png")}
+            style={styles.map}
+          ></ImageBackground>
           <Text style={styles.title}>Tìm kiếm gần đây</Text>
           {data.map((dt, idx) => (
             <Recent info={dt} key={idx} />
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     height: 160,
     backgroundColor: "#000",
     borderRadius: 20,
-    // paddingVertical: 20 ,
+
     marginBottom: 20,
   },
   avatar: {

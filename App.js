@@ -5,7 +5,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Foundation, FontAwesome5 } from "@expo/vector-icons";
 
-import { Login, Home, Weather, Payment, User, PaymentMethod, FindBus, BusDetails, SuccessfulPayment } from "./screens/index";
+import {
+  Login,
+  Home,
+  Weather,
+  Payment,
+  User,
+  FindBus,
+  BusDetails,
+  FindBusStop,
+  SuccessfulPayment,
+  PaymentMethod
+} from "./screens/index";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,6 +83,7 @@ const MyStack = () => {
       <Stack.Screen name="BusDetails" component={BusDetails} />
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
       <Stack.Screen name="SuccessfulPayment" component={SuccessfulPayment} />
+      <Stack.Screen name="busstop" component={FindBusStop} />
     </Stack.Navigator>
   );
 };
