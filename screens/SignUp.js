@@ -14,11 +14,12 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Octicons } from "@expo/vector-icons";
 
-function Login() {
+function SignUp() {
   const navigation = useNavigation();
 
   const [inputs, setInputs] = useState({
     email: "",
+    name: "",
     password: "",
   });
 
@@ -30,11 +31,13 @@ function Login() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Xin chào</Text>
+      <Text style={styles.subscript}>
+        Đăng ký tài khoản để thuận tiện sử dụng ToBus
+      </Text>
       <View style={styles.img}>
-        <Image source={require("../assets/login.png")} />
+        <Image source={require("../assets/signup.png")} />
       </View>
-      <Text style={styles.header}>Đăng nhập</Text>
-      <Text style={styles.subscript}>Nhập email và mật khẩu tại đây</Text>
       <View style={styles.iwrapper}>
         <TextInput
           style={styles.input}
@@ -46,6 +49,21 @@ function Login() {
         />
         <AntDesign
           onPress={() => handleOnchange("", "email")}
+          name="closecircle"
+          size={20}
+          color="#363636"
+        />
+      </View>
+      <View style={styles.iwrapper}>
+        <TextInput
+          style={styles.input}
+          value={inputs.name}
+          placeholder="Nhập tên người dùng..."
+          name="name"
+          onChangeText={(text) => handleOnchange(text, "name")}
+        />
+        <AntDesign
+          onPress={() => handleOnchange("", "name")}
           name="closecircle"
           size={20}
           color="#363636"
@@ -76,7 +94,7 @@ function Login() {
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          navigation.navigate("UserIn");
+          navigation.navigate("Login");
         }}
       >
         <Text
@@ -86,14 +104,14 @@ function Login() {
             color: "#fff", // for ios
           }}
         >
-          ĐĂNG NHẬP
+          ĐĂNG KÝ
         </Text>
       </TouchableOpacity>
       <View style={{ flexDirection: "row", marginTop: 30 }}>
-        <Text style={{ fontSize: 16 }}>Không có tài khoản? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <Text style={{ fontSize: 16 }}>Đã có tài khoản? </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={{ fontSize: 16, color: "#FB847C", fontWeight: 700 }}>
-            Đăng ký
+            Đăng nhập
           </Text>
         </TouchableOpacity>
       </View>
@@ -101,7 +119,7 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
