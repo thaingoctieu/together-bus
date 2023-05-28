@@ -25,7 +25,7 @@ function Login() {
   const { phone, setPhone } = useContext(MyContext);
 
   const [inputs, setInputs] = useState({
-    email: "",
+    phone: "",
     password: "",
   });
 
@@ -41,18 +41,18 @@ function Login() {
         <Image source={require("../assets/login.png")} />
       </View>
       <Text style={styles.header}>Đăng nhập</Text>
-      <Text style={styles.subscript}>Nhập email và mật khẩu tại đây</Text>
+      <Text style={styles.subscript}>Nhập số điện thoại và mật khẩu tại đây</Text>
       <View style={styles.iwrapper}>
         <TextInput
           style={styles.input}
-          value={inputs.email}
-          placeholder="Nhập email người dùng..."
-          name="email"
-          keyboardType="email-address"
-          onChangeText={(text) => handleOnchange(text, "email")}
+          value={inputs.phone}
+          placeholder="Nhập số điện thoại..."
+          name="phone"
+          keyboardType="numeric"
+          onChangeText={(text) => handleOnchange(text, "phone")}
         />
         <AntDesign
-          onPress={() => handleOnchange("", "email")}
+          onPress={() => handleOnchange("", "phone")}
           name="closecircle"
           size={20}
           color="#363636"
@@ -83,7 +83,7 @@ function Login() {
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
-          auth.login(inputs.email, inputs.password).then(async (res) => {
+          auth.login(inputs.phone, inputs.password).then(async (res) => {
             setTokens(res.data.accessToken, res.data.refreshToken, res.data.phone);
             setPhone(res.data.phone);
             // navigation.navigate("UserIn");
