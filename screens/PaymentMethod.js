@@ -137,7 +137,7 @@ function PaymentMethod() {
               onPress={() => setMethod("zalopay")}
             >
               <Image
-                source={require("../assets/Logo-ZaloPay-Square.webp")}
+                source={require("../assets/Logo-ZaloPay-Square.png")}
                 style={styles.logo}
               ></Image>
             </TouchableOpacity>
